@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p ./mnt
+sudo mount -o loop,offset=1048576 hd.img ./mnt
