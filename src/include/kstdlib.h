@@ -1,0 +1,1 @@
+#ifndef STDARG_H#define STDARG_Hvoid setcol(char col);void kputc(char chr, char col);void sprint(char * str);int strlen(char * str);char * invertstr(char * str);char * itoa(int val, char * buffer, int base);void cleanscr();void kprintf(char * format, ...);void * memset(void * ptr, int value, int num);#endif

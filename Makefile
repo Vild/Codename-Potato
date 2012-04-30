@@ -1,7 +1,7 @@
-all: clear make iso
+all: clear make 
 
 make: clear
-	cd src;make;cd ..
+	@cd src;make;cd ..
 
 clear:
-	@rm iso.iso kernel.bin bochsout.txt| true
+	@rm kernel.bin bochsout.txt > /dev/null 2>&1 | true
