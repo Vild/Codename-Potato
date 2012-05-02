@@ -68,6 +68,9 @@ void scroll()
 
 void kputc(char chr, char col)
 {
+	if(cur >= 80 * 25)
+		scroll();
+
 	if(chr == '\n')
 		cur = ((cur / 80) * 80) + 80;
 	else if(chr == '\t')
@@ -82,8 +85,6 @@ void kputc(char chr, char col)
 		videoram[cur * 2 + 1] = col;
 		cur++;
 	}
-	if(cur > 80 * 20)
-		scroll();
 }
 
 void sprint(char * str)

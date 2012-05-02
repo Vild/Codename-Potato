@@ -2,8 +2,7 @@ GCC = i586-elf-gcc
 LD = i586-elf-ld
 NASM = nasm
 
-STD = kstdlib.o
-OBJS = loader.o kmain.o io.o $(STD)
+OBJS = loader.o kmain.o io.o kstdlib.o interrupt.o descriptor_tables.o asm_misc.o  isr.o timer.o
 KERNEL = ../kernel.bin
 
 all: $(KERNEL)
