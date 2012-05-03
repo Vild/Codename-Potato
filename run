@@ -1,10 +1,3 @@
 #!/bin/bash
 
-mkdir -p ./mnt
-sudo mount -o loop,offset=1048576 hd.img ./mnt
-sudo cp kernel.bin ./mnt/boot
-sudo cp grub.cfg ./mnt/boot/grub
-sync
-sudo umount ./mnt
-rmdir ./mnt
 bochs -f bochsrc.txt

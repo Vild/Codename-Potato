@@ -192,3 +192,16 @@ void kprintf(char * format, ...)
 	va_end(vl);
 }
 
+void panic(const char *message, const char *file, u32int line)
+{
+	asm volatile("cli");
+	kprintf("PANIC(%s) at %s:%i\n", message, file, line);
+	for(;;);
+}
+
+void panic_assert(const char *file, u32int line, const char *desc)
+{
+	asm volatile("cli");
+	kprintf("ASSERTION-FAILED(%s) at %s:%i\n", desc, file, line);
+	for(;;);
+}

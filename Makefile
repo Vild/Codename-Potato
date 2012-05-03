@@ -1,6 +1,6 @@
-all: clear make 
+all: make 
 
-make: clear
+make:
 	@cd src;make;cd ..
 
 clean:
