@@ -42,9 +42,9 @@ void * memmove(void * destination, const void * source, int num)
 {
 	if(source == destination)
 		return 0;
-	
+
 	int e = (source < destination);
-	
+
 	int i;
 	for(i = e ? num - 1 : 0; e ? (i >= 0) : (i < num); i += e ? -1 : 1)
 		*((int *)destination + i) = *((int *)source + i);
@@ -148,6 +148,26 @@ char * itoa(int val, char * buffer, int base)
 	return buffer;
 }
 
+char * uitoa(unsigned int val, char * buffer, int base)
+{
+	unsigned int i = 0;
+	do
+	{
+		unsigned int n = val % base;
+		if(n < 10)
+			buffer[i] = 48 + n;
+		else
+			buffer[i] = ('A' - 10) + n;
+		val /= base;
+		i++;
+	}
+	while(val != 0);
+	buffer[i] = 0;
+
+	invertstr(buffer);
+	return buffer;
+}
+
 void kprintf(char * format, ...)
 {
 	va_list vl;
@@ -165,7 +185,7 @@ void kprintf(char * format, ...)
 					sprint(s);
 				}
 				break;
-				
+
 				case 'i':
 				case 'd':
 				{
@@ -174,19 +194,25 @@ void kprintf(char * format, ...)
 					sprint(s);
 				}
 				break;
-				
+
 				case 'X':
 				{
 					char s[50];
 					itoa(va_arg(vl, int), s, 16);
 					sprint(s);
 				}
+				case 'H':
+                {
+                    char s[50];
+                    uitoa(va_arg(vl,  unsigned int), s, 16);
+                    sprint(s);
+                }
 				break;
 			}
 		}
 		else
 			kputc(*format, ccol);
-		
+
 		format++;
 	}
 	va_end(vl);
